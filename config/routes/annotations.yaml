@@ -1,0 +1,38 @@
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /%locale%/admin
+        permanent: true
+        keepQueryParams: true
+        keepRequestMethod: true
+login_check:
+    path: /%locale%/api/login_check
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /api/login_check
+        permanent: true
+        keepQueryParams: true
+        keepRequestMethod: true
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+    prefix: /fornt/remove/controllers
+    requirements:
+        _locale: '%locales%'
+controllers_api:
+    resource: ../../src/Controller/Api
+    type: annotation
+    prefix: /{_locale}
+    requirements:
+        _locale: '%locales%'
+controllers_admin:
+    resource: ../../src/Controller/Admin
+    type: annotation
+    prefix: /{_locale}/admin
+    requirements:
+        _locale: '%locales%'
+controllers_healt:
+    resource: ../../src/Controller/Health
+    type: annotation
+    prefix: /

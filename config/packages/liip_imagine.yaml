@@ -1,0 +1,5 @@
+#liip_imagine:
+#    driver:               gd
+#    cache:                default
+#    data_loader:          default
+#    default_image:        null

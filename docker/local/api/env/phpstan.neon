@@ -1,0 +1,8 @@
+parameters:
+  level: 8
+  tipsOfTheDay: false
+  parallel:
+    processTimeout: 3000.0
+  paths:
+    - src
+    - tests

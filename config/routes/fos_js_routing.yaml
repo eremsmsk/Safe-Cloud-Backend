@@ -1,0 +1,5 @@
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+  prefix: /{_locale}
+  requirements:
+    _locale: '%locales%'

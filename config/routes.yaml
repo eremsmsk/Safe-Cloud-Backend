@@ -1,0 +1,32 @@
+#fos_user:
+#  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#  prefix: /{_locale}
+#  defaults:
+#    _locale: '%locale%'
+#  requirements:
+#    _locale: '%locales%'
+#  methods:
+#    - 'POST'
+
+#  gesdinet_jwt_refresh_token:
+#    path: /{_locale}/api/token/refresh
+#    controller: gesdinet.jwtrefreshtoken::refresh
+#    defaults:
+#      _locale: '%locale%'
+#    requirements:
+#      _locale: '%locales%'
+#    methods:
+#      - 'POST'
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  prefix: /{_locale}/admin
+  requirements:
+    _locale: '%locales%'
+api_login_check:
+  path: /api/login_check
+  requirements:
+    _locale: '%locales%'
+api:
+  path: /{_locale}/api
+  requirements:
+    _locale: '%locales%'

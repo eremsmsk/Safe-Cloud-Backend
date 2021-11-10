@@ -1,0 +1,14 @@
+# TODO: !!... MÜMKÜN BURAYA YAZIP; DEV VE PROD AYRIMINI ENV İÇERİSİNDE YAPINIZ ...!!
+parameters:
+  uploadDirectory: '%kernel.project_dir%/public/assets/uploads'
+  binDirectory: '%kernel.project_dir%/bin'
+  assetUploadedDirectory: '/uploaded'
+  cacertAssetsRoute: '%kernel.project_dir%/public/assets/'
+  hostUrlName: '%env(HOST_URL_NAME)%'
+  serverIpAdress: '%env(SERVER_IP_ADRESS)%'
+  socketCrt: "%kernel.project_dir%/config/socket_auth/%env(HOSTING_NAME)%.crt"
+  socketKey: "%kernel.project_dir%/config/socket_auth/%env(HOSTING_NAME)%.key"
+  subMerchantKey: '%env(SUB_MERCHANT_KEY)%'
+  redisHost: '%env(REDIS_HOST)%'
+#  redisPort: '%env(int:REDIS_PORT)%'R
+  nginxHost: '%env(NGINX_HOST)%'

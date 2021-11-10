@@ -1,0 +1,93 @@
+version: "2.4"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/local/nginx/Dockerfile
+    container_name: safecloudsoft-nginx
+    volumes:
+      - ./public:/var/www/app/public:rw
+    networks:
+      - nt-safecloudsoft
+    restart: always
+    stdin_open: true
+    tty: true
+    cpu_count: 1
+    cpus: 0.5
+    mem_limit: 1000M
+    mem_reservation: 500M
+    ports:
+      - "7026:80"
+    links:
+      - symfony
+    depends_on:
+      - symfony
+
+  symfony:
+    build:
+      context: .
+      dockerfile: docker/local/api/Dockerfile
+    image: safecloudsoft-api:latest
+    container_name: safecloudsoft-api
+    volumes:
+      - ./config:/var/www/app/config:rw
+      - ./public:/var/www/app/public:rw
+      - ./src:/var/www/app/src:rw
+      - ./templates:/var/www/app/templates:rw
+      - ./translations:/var/www/app/translations:rw
+      - ./tests:/var/www/app/tests:rw
+      - ./docker/local/api/env/.env:/var/www/app/.env:rw
+    networks:
+      - nt-safecloudsoft
+    restart: always
+    stdin_open: true
+    tty: true
+    cpu_count: 2
+    cpus: 1
+    mem_limit: 3500M
+    mem_reservation: 3000M
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: mariadb:10.4.17
+    container_name: safecloudsoft-db
+    networks:
+      - nt-safecloudsoft
+    restart: always
+    stdin_open: true
+    tty: true
+    cpu_count: 2
+    cpus: 1
+    mem_limit: 3500M
+    mem_reservation: 3000M
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: demodb
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: abc123
+    ports:
+      - "7027:3306"
+
+  redis:
+    image: redis:6.0.10
+    container_name: safecloudsoft-redis
+    networks:
+      - nt-safecloudsoft
+    restart: always
+    stdin_open: true
+    tty: true
+    cpu_count: 2
+    cpus: 1
+    mem_limit: 3500M
+    mem_reservation: 3000M
+    ports:
+      - "7028:3306"
+
+networks:
+  nt-safecloudsoft: {}
+
+volumes:
+  vm-safecloudsoft: {}
